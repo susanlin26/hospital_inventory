@@ -8,7 +8,7 @@ export default async function(request){
   if(!response.ok)throw Error('background_worker_failed_'+response.status);
   const result=await response.json();
   console.info('[inventory-worker] finished',JSON.stringify({processed:result.processed,pending:result.pending,busy:result.busy}));
-  if(result.pending&&!result.busy)await wakeWorker(request.url);
+  if(result.pending&&!result.busy)await wakeWorker(request.url,null,request.headers.get('cookie'));
   return new Response(null,{status:204});
  }catch(e){console.error('[inventory-worker] failed',safeCode(e));throw Error('inventory_background_failed')}
 }

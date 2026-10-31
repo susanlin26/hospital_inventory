@@ -15,7 +15,7 @@ export function createHandler({forward,wakeWorker,errorResponse,now=Date.now,log
    }
    if(response.ok&&queueTrigger(path)&&pending&&((!polling&&request.method!=='GET')||now()-lastWake>3000)){
     lastWake=now();
-    try{await wakeWorker(request.url,request.headers.get('origin'))}
+    try{await wakeWorker(request.url,request.headers.get('origin'),request.headers.get('cookie'))}
     catch(e){lastWake=-Infinity;response.headers.set('X-Inventory-Queue','pending');log.error('[inventory-queue] dispatch failed',safeCode(e))}
    }
    return response;

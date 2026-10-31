@@ -78,9 +78,17 @@ export function workerOrigin(sourceUrl,browserOrigin){
  }
  throw Error('untrusted_worker_origin');
 }
-export async function wakeWorker(sourceUrl,browserOrigin){
+export async function wakeWorker(sourceUrl,browserOrigin,cookie){
  const base=workerOrigin(sourceUrl,browserOrigin);
- const response=await fetch(base+'/.netlify/functions/inventory-worker-background',{method:'POST',headers:{'X-Inventory-Worker':workerTicket(),'Content-Type':'application/json'},body:'{}',signal:AbortSignal.timeout(10000),redirect:'manual'});
+ const headers={'X-Inventory-Worker':workerTicket(),'Content-Type':'application/json'};
+ // Relay the existing visitor's access cookies only to this exact allowed origin.
+ // Do not store cookies, return them in JSON, log them, or follow redirects.
+ if(cookie){
+  const visitorOrigin=browserOrigin?new URL(browserOrigin).origin:new URL(sourceUrl).origin;
+  if(base!==visitorOrigin)throw Error('untrusted_worker_origin');
+  headers.Cookie=cookie;
+ }
+ const response=await fetch(base+'/.netlify/functions/inventory-worker-background',{method:'POST',headers,body:'{}',signal:AbortSignal.timeout(10000),redirect:'manual'});
  if(response.status>=300&&response.status<400)throw Error('worker_redirect');
  if(response.status!==202)throw Error('worker_dispatch_failed_'+response.status);
  console.info('[inventory-queue] background dispatch accepted');return true;
