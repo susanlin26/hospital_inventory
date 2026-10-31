@@ -12,4 +12,4 @@ export default async function(request){
   return response;
  }catch{return errorResponse('服務暫時無法回應，請稍後重試；若持續發生請聯絡管理員')}
 }
-export const config={path:'/api/*',memory:'2gb',region:'sin'};
+export const config={path:'/api/*'};

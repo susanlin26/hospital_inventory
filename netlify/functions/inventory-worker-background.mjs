@@ -7,4 +7,4 @@ export default async function(request){
  if(result.pending&&!result.busy)await wakeWorker(request.url);
  return new Response(null,{status:204});
 }
-export const config={background:true,memory:'2gb',region:'sin'};
+export const config={background:true};
