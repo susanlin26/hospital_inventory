@@ -70,9 +70,19 @@ export async function forward(request){
 function workerKey(){const seed=process.env.BOOTSTRAP_TOKEN||'';if(seed.length<32)throw Error('missing_configuration');return createHmac('sha256',seed).update('inventory-worker-v1').digest()}
 export function workerTicket(){const value=String(Date.now());return value+'.'+createHmac('sha256',workerKey()).update(value).digest('hex')}
 export function verifyTicket(ticket){try{const [time,signature,...extra]=String(ticket||'').split('.');if(extra.length||!/^\d+$/.test(time)||!/^\w{64}$/.test(signature)||!(/^[a-f0-9]+$/).test(signature)||Math.abs(Date.now()-Number(time))>120000)return false;const expected=createHmac('sha256',workerKey()).update(time).digest(),given=Buffer.from(signature,'hex');return given.length===expected.length&&timingSafeEqual(given,expected)}catch{return false}}
-export async function wakeWorker(sourceUrl){
- const base=new URL(sourceUrl).origin;if(!origins().includes(base))throw Error('untrusted_worker_origin');
- const response=await fetch(base+'/.netlify/functions/inventory-worker-background',{method:'POST',headers:{'X-Inventory-Worker':workerTicket(),'Content-Type':'application/json'},body:'{}',signal:AbortSignal.timeout(10000)});
- if(!response.ok)throw Error('worker_dispatch_failed');return true;
+export function workerOrigin(sourceUrl,browserOrigin){
+ const allowed=origins();
+ // Only explicitly allowed origins can receive the private worker ticket.
+ for(const candidate of [browserOrigin,sourceUrl]){
+  try{const value=new URL(candidate).origin;if(allowed.includes(value))return value}catch{}
+ }
+ throw Error('untrusted_worker_origin');
+}
+export async function wakeWorker(sourceUrl,browserOrigin){
+ const base=workerOrigin(sourceUrl,browserOrigin);
+ const response=await fetch(base+'/.netlify/functions/inventory-worker-background',{method:'POST',headers:{'X-Inventory-Worker':workerTicket(),'Content-Type':'application/json'},body:'{}',signal:AbortSignal.timeout(10000),redirect:'manual'});
+ if(response.status>=300&&response.status<400)throw Error('worker_redirect');
+ if(response.status!==202)throw Error('worker_dispatch_failed_'+response.status);
+ console.info('[inventory-queue] background dispatch accepted');return true;
 }
 export function stopForTest(){child?.kill();boot=undefined}
