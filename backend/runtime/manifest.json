@@ -1,0 +1,15 @@
+{
+  "python": "3.12",
+  "architecture": "x86_64",
+  "system": "linux",
+  "archives": {
+    "python.tar.gz": {
+      "sha256": "6232315de3342b43a12d75af7536397b1d3eb10f089f361011fc085e38661f6f",
+      "size": 14991372
+    },
+    "packages.tar.gz": {
+      "sha256": "6e3d0d57b16175bcdca9b67cd5a235ecf21864096a794ccde6ee5f1b51a6d4d7",
+      "size": 14267395
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.mw-desk .mw-filters>label:not(.mw-check){flex:0 0 190px;min-width:0;width:190px}.mw-desk .mw-filters>label:has(#mwBasis){flex-basis:215px;width:215px}.mw-desk .mw-filters>label[hidden]{display:none!important}.mw-desk .mw-filters>.mw-check{margin-left:auto}
+#mwList .value-switch104 [data-value104=quantity]{margin-left:0}
+#analysisBody .analysis-controls{align-items:flex-end}#analysisBody .analysis-mode108{margin:0;align-self:flex-end}#analysisBody .analysis-mode108 button{white-space:nowrap}
+@media(max-width:640px){.mw-desk .mw-filters>label:not(.mw-check){flex:0 1 190px;max-width:100%}.mw-desk .mw-filters>.mw-check{margin-left:0}}
+
+#mwList .value-switch104 #mwRefresh{margin-left:auto;white-space:nowrap}

@@ -1,0 +1,18 @@
+#mwMainTabs #mwRefresh{margin-left:auto}#mwMainTabs #mwExport{margin-left:0}
+#mwPanel>.mw-filters{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px}
+#mwPanel>.mw-filters .value-switch104{align-items:center;flex-wrap:wrap;margin:0;gap:8px}
+#mwPanel>.mw-filters label{flex:0 1 auto}#mwPanel>.mw-filters select{width:auto;max-width:220px}
+.batch-confirm{display:flex!important;align-items:center;justify-content:flex-start;gap:8px;text-align:left}.batch-confirm input{width:auto!important;flex:none}.batch-confirm span{flex:none}
+#mwStatsBody table th,#mwStatsBody table td{text-align:center!important}
+.cross-metric-grid111{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}.cross-metric-grid111>*{min-width:0}.cross-metric-grid111 table{width:100%;min-width:100%;table-layout:fixed}.cross-metric-grid111 th,.cross-metric-grid111 td{text-align:center!important;padding:10px 6px!important;overflow-wrap:anywhere}.cross-metric-grid111 h3{margin-top:4px}
+#cross-categories .scroll,#cross-items .scroll{border:1px solid #dce6eb;border-radius:10px;scrollbar-width:thin;scrollbar-color:#92b4bf #edf3f5;max-height:580px}
+#cross-categories table thead th,#cross-items table thead th{position:sticky;top:0;z-index:2}#cross-categories td,#cross-items td{text-align:center!important}#cross-categories tfoot{font-weight:700;background:#eaf4f3}
+aside{padding-top:56px!important}#sidebarToggle104{top:12px;left:16px}aside nav{padding-top:8px}.sidebar-collapsed104 main{padding-top:48px}
+@media(max-width:900px){.cross-metric-grid111{grid-template-columns:minmax(0,1fr)}.cross-metric-grid111>*:nth-child(2){order:3}.cross-metric-grid111>*:nth-child(4){order:4}}
+#mwPanel>.mw-filters .value-switch104{display:contents}
+#mwPanel>.mw-filters label{min-width:0;width:auto;flex:0 1 auto}
+#mwPanel>.mw-filters label:has(#mwBasis){width:auto;flex:0 1 auto}
+#mwDomain,#mwType{width:145px!important}#mwBasis{width:170px!important}#mwCategory106{width:145px!important}#mwKeyword{width:170px!important;min-width:0}
+#mwPanel>.mw-filters [data-value104]{white-space:nowrap;padding:9px 10px}
+@media(max-width:640px){#mwPanel>.mw-filters label{max-width:100%;flex:0 1 auto}}
+#mwBatchForm .batch-confirm{flex-direction:row!important;align-items:center;justify-content:flex-start}

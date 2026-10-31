@@ -1,0 +1,5 @@
+#mwList .mw-case-table td:not(:nth-child(2)){text-align:center!important;font-variant-numeric:tabular-nums}
+#mwList .mw-case-table td:nth-child(2){text-align:left!important}
+.inventory-light105{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:middle;margin-right:4px}.inventory-light105.red{background:#cf3445;box-shadow:0 0 0 3px #fbe5e8}.inventory-light105.yellow{background:#e4af13;box-shadow:0 0 0 3px #fff4cf}.review-summary105{padding:12px;background:#f3f8f9;border-radius:8px;margin:12px 0}
+
+.improvement-summary111{display:grid;grid-template-columns:1fr 160px;gap:12px}.improvement-summary111 p{margin:0}.improvement-summary111 .wide{grid-column:1/-1}#mwFormHost textarea[name=note]{min-height:110px}@media(max-width:640px){.improvement-summary111{grid-template-columns:1fr}}
