@@ -1,0 +1,9 @@
+{
+  "name": "hospital-inventory-netlify-only",
+  "version": "0.12.0-preview",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {"build": "python3 tools/build_netlify_only.py", "test:adapter": "node --test tests/netlify-adapter.test.mjs"},
+  "dependencies": {"@netlify/database": "2.0.1", "tar": "7.5.22"}
+}
